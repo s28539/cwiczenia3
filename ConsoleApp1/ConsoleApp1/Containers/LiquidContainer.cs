@@ -6,8 +6,10 @@ public class LiquidContainer : Container , IHazardNotifier
 {
     public bool IsDangeraous { get; set; }
 
-    public LiquidContainer(double cargoWeight, int height, int selfWeight, int deep, char type, int maxLoad, bool isDangeraous) : base(cargoWeight, height, selfWeight, deep, type, maxLoad)
+    public LiquidContainer(double cargoWeight, int height, int selfWeight, int deep, int maxLoad, bool isDangeraous) : base(cargoWeight, height, selfWeight, deep, maxLoad)
     {
+        this.Type = 'L';
+        Name = "KON-" + Type + "-" + Container.counter;
         IsDangeraous = isDangeraous;
     }
     
