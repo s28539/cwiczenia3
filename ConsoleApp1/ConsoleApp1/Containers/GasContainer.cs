@@ -6,8 +6,10 @@ public class GasContainer : Container,IHazardNotifier
 {
     public int Pressure { get; set; }
 
-    public GasContainer(double cargoWeight, int height, int selfWeight, int deep, char type, int maxLoad,int pressure) : base(cargoWeight, height, selfWeight, deep, type, maxLoad)
+    public GasContainer(double cargoWeight, int height, int selfWeight, int deep, int maxLoad,int pressure) : base(cargoWeight, height, selfWeight, deep, maxLoad)
     {
+        this.Type = 'G';
+        this.Name = "KON-" + Type + "-" + counter;
         Pressure = pressure;
     }
 
