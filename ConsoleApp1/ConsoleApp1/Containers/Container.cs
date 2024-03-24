@@ -14,16 +14,16 @@ public class Container : IContainer
     public int MaxLoad { get; set; }
     public String Name { get; set; }
 
-    public Container(double cargoWeight,int height,int selfWeight, int deep, char type,int maxLoad)
+    public Container(double cargoWeight,int height,int selfWeight, int deep,int maxLoad)
     {
+        counter = counter +1;
         CargoWeight = cargoWeight;
         Height = height;
         SelfWeight = selfWeight;
         Deep = deep;
-        Type = type;
+        Type = 'U'; //like universal
         MaxLoad = maxLoad;
         Name = "KON-" + Type + "-" + counter;
-        counter++;
     }
 
     public virtual void Unload()
