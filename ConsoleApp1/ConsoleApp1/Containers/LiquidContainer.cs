@@ -1,14 +1,31 @@
-﻿namespace ConsoleApp1.Containers;
+﻿using ConsoleApp1.Interfaces;
 
-public class LiquidContainer : Container
+namespace ConsoleApp1.Containers;
+
+public class LiquidContainer : Container , IHazardNotifier
 {
-    public LiquidContainer(double cargoWeight) : base(cargoWeight)
+    public bool IsDangeraous { get; set; }
+
+    public LiquidContainer(double cargoWeight, int height, int selfWeight, int deep, char type, int maxLoad, bool isDangeraous) : base(cargoWeight, height, selfWeight, deep, type, maxLoad)
     {
+        IsDangeraous = isDangeraous;
     }
     
-    public override void Load(double cargoWeight)
+    public void Load(double cargoWeight, bool IsDangareous)
     {
-        base.Load(cargoWeight);
-        Console.WriteLine("LiquidContainer");
+        if (this.IsDangeraous && cargoWeight>0.5*this.CargoWeight)
+        {
+            SendNotify("You have dangerous load! You cannot load more than 50% of capacity");
+        }else if (!IsDangareous && cargoWeight>0.9*this.CargoWeight)
+        {
+            SendNotify("You cannot load more than 90% of capacity");
+        }
     }
+
+
+    public void SendNotify(string message)
+    {
+        Console.WriteLine(message);
+    }
+    
 }
