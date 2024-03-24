@@ -26,15 +26,18 @@ public class Container : IContainer
         counter++;
     }
 
-    public void Unload()
+    public virtual void Unload()
     {
-        throw new NotImplementedException();
+        this.CargoWeight = 0;
     }
 
     public virtual void Load(double cargoWeight)
     {
-        Console.WriteLine("Container");
-        CargoWeight = cargoWeight;
-        // throw new OverfillException();
+        CargoWeight += cargoWeight;
+        if (CargoWeight > MaxLoad)
+        {
+            throw new OverfillException();
+        }
+        
     }
 }
