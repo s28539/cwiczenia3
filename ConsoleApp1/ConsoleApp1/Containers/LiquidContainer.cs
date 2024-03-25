@@ -13,21 +13,24 @@ public class LiquidContainer : Container , IHazardNotifier
         IsDangeraous = isDangeraous;
     }
     
-    public void Load(double cargoWeight, bool IsDangareous)
+    public override void Load(double cargoWeight)
     {
-        if (this.IsDangeraous && cargoWeight>0.5*this.CargoWeight)
+        if (this.IsDangeraous && ( (CargoWeight + cargoWeight) >(0.5*this.MaxLoad) ) )
         {
             SendNotify("You have dangerous load! You cannot load more than 50% of capacity");
-        }else if (!IsDangareous && cargoWeight>0.9*this.CargoWeight)
+        }else if (!IsDangeraous && ( (CargoWeight + cargoWeight) >(0.9*this.MaxLoad) ) )
         {
             SendNotify("You cannot load more than 90% of capacity");
+        }else
+        {
+            CargoWeight = CargoWeight + cargoWeight;
         }
     }
 
 
     public void SendNotify(string message)
     {
-        Console.WriteLine(message);
+        Console.WriteLine(Name+" "+message);
     }
     
 }
