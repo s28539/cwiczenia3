@@ -1,3 +1,4 @@
+using System.Diagnostics.Contracts;
 using ConsoleApp1.Containers;
 using ConsoleApp1.Interfaces;
 
@@ -59,6 +60,51 @@ public class Ship : IHazardNotifier
             SendNotify("Cannot add containers to ship");
         }
     }
+
+    public void Unload(Container container)
+    {
+        Containers.Remove(container);
+        currentLoad = currentLoad - container.CargoWeight;
+        
+    }
+
+    public void replaceContainers(String containerName,Container replacedContainer)
+    {
+        int index = 0;
+        foreach (var container in Containers)
+        {
+            if (container.Name.Equals(containerName))
+            {
+                Containers[index] = replacedContainer;
+                break;
+            }
+            index++;
+        }
+    }
+
+    public void transferContainer(Container containerToTransfer,Ship anotherShip)
+    { 
+        int index = 0;
+        foreach (var container in Containers)
+        {
+            if (container.Equals(containerToTransfer))
+            {
+                Containers.Remove(container);
+                anotherShip.Containers.Add(container);
+                break;
+            }
+
+            index++;
+        }
+    }
+
+    public static void infoAboutContainer(Container container)
+    {
+        Console.WriteLine(container.CargoWeight);
+        Console.WriteLine(container.Name);
+        Console.WriteLine(container.Type);
+    }
+    
 
     public void SendNotify(string message)
     {
