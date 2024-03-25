@@ -1,4 +1,5 @@
 using System.Diagnostics.Contracts;
+using System.Runtime.CompilerServices;
 using ConsoleApp1.Containers;
 using ConsoleApp1.Interfaces;
 
@@ -104,7 +105,17 @@ public class Ship : IHazardNotifier
         Console.WriteLine(container.Name);
         Console.WriteLine(container.Type);
     }
-    
+
+    public void infoAboutShip()
+    {
+        Console.WriteLine(this);
+    }
+
+    public override string ToString()
+    {
+        return ShipName + " " + ShipId + " " + Speed + " " + ContainerCapacity + " " + MaxLoad + " " + currentLoad;
+    }
+
 
     public void SendNotify(string message)
     {
