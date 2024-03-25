@@ -33,11 +33,15 @@ public class Container : IContainer
 
     public virtual void Load(double cargoWeight)
     {
-        CargoWeight += cargoWeight;
-        if (CargoWeight > MaxLoad)
+        
+        if (CargoWeight+ cargoWeight > MaxLoad)
         {
             throw new OverfillException();
         }
-        
+        else
+        {
+            CargoWeight = CargoWeight + cargoWeight;
+        }
+
     }
 }
