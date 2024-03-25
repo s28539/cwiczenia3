@@ -27,6 +27,6 @@ public class CoolingContainer : Container , IHazardNotifier , PosibleProductsTem
 
     public void SendNotify(string message)
     {
-        Console.WriteLine(Name+message);
+        Console.WriteLine(Name+" "+message);
     }
 }

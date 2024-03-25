@@ -15,13 +15,12 @@ public class GasContainer : Container,IHazardNotifier
 
     public void SendNotify(string message)
     {
-        Console.WriteLine(message);
+        Console.WriteLine(Name+" "+message);
     }
 
     public override void Load(double cargoWeight)
     {
         base.Load(cargoWeight);
-        
     }
 
     public override void Unload()
